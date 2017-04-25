@@ -1,0 +1,48 @@
+//创建数据库
+$conn =new mysqli($servername, $username, $pass);
+
+if ($conn->connect_error) {
+    echo "连接失败";
+}else{
+    echo "连接成功";
+}
+
+
+$sql = "CREATE DATABASE myDB";
+$result =  $conn->query($sql);
+if($result === TRUE){
+    echo "数据库创建成功";
+}else{
+    echo "Error creating database:".$conn->connect_error;
+}
+
+
+
+//创建数据库
+
+try {
+  $conn = new PDO("mysql:host=$servername;dbname=$dbname",$username,$pass);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $sql = "CREATE DATABASE mydbPDO";
+  echo "创建mydbPDO成功";  
+} catch (Exception $exc) {
+    echo $exc->getTraceAsString();
+}
+
+
+ 
+        $sql = "CREATE TABLE USERS1(id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+firstname VARCHAR(30) NOT NULL,
+lastname VARCHAR(30) NOT NULL,
+email VARCHAR(50),
+reg_date TIMESTAMP)";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Table MyGuests created successfully";
+} else {
+    echo "创建数据表错误: " . $conn->error;
+}
+
+
+    $sql = "INSERT INTO USERS1(firstname,lastname,email)VALUES('yu','miaohua','yumiaohua@163.com') ";
+       

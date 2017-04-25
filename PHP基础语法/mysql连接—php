@@ -1,0 +1,35 @@
+        //mysqli面向对象
+        $conn = new  mysqli($servername, $username, $pass, $dbname, $port);
+      
+        //检测连接
+        if($conn->connect_error){
+            
+            echo "连接失败";
+            die("连接失败:".$conn->connect_error);
+        }else{
+            
+             echo "连接成功";
+        }
+        
+//        mysqli_close();
+
+
+        //-----第二种方法mysqli面向过程------
+        $conn1 = mysqli_connect($servername, $username, $pass, $dbname, $port, $socket);
+        
+        //检测连接
+        if ($conn1) {
+           die("Connection failed: " . mysqli_connect_error());     
+}
+        echo "连接成功";;
+//mysqli_close($conn1);
+
+//  -----第三种方法pod------
+     try {
+    $conn2 = new PDO("mysql:host=$servername;dbname=$dbname", $username, $pass);
+    echo "连接成功"; 
+}
+catch(PDOException $e)
+{
+    echo $e->getMessage();
+}
